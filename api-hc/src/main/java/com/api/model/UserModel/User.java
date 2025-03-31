@@ -1,18 +1,18 @@
-package com.api.model;
+package com.api.model.UserModel;
 
 import java.util.Date;
 
 public class User {
-    final private int id;
-    final private String user_name;
-    final private String password;
-    final private String email;
-    final private String celular;
-    final private String foto;
-    final private String data_cadastro;
+    private int id;
+    private String user_name;
+    private String password;
+    private String email;
+    private String celular;
+    private String foto;
+    private Date data_cadastro;
 
 
-    //public User() {}
+    public User() {}
     
     public User(
             int id, 
@@ -21,7 +21,7 @@ public class User {
             String email, 
             String celular, 
             String foto, 
-            String data_cadastro
+            Date data_cadastro
         ) {
 
         this.id = id;
@@ -40,7 +40,7 @@ public class User {
             String email, 
             String celular, 
             String foto, 
-            String data_cadastro
+            Date data_cadastro
         ) {
 
         this.id = 0;
@@ -101,11 +101,11 @@ public class User {
         return foto;
     }
 
-    public String getData_cadastro(){
+    public Date getData_cadastro(){
         return data_cadastro;
     }
 
-    public String setData_cadastro(){
+    public Date setData_cadastro(){
         return data_cadastro;
     }
     
