@@ -1,4 +1,4 @@
-package com.api.model.UserModel;
+package com.api.model;
 
 import java.util.Date;
 
@@ -39,7 +39,7 @@ public class User {
             String password, 
             String email, 
             String celular, 
-            String foto, 
+            String foto,
             Date data_cadastro
         ) {
 
@@ -49,8 +49,6 @@ public class User {
         this.email = email;
         this.celular = celular;
         this.foto = foto;
-        this.data_cadastro = data_cadastro;
-        
     }
 
     public int getId(){

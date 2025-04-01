@@ -1,7 +1,7 @@
-package com.api.dao.user;
+package com.api.dao;
 
 import com.api.config.Conexao;
-import com.api.model.UserModel.User;
+import com.api.model.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,12 +14,12 @@ import java.util.List;
 
 
 public class DAOUser {
-    public static Connection conexao = null;
+        public static Connection conexao = null;
 
         public static int adicionarUser(User user) throws Exception {
-            
+            conexao = Conexao.getConexao();
             //query de inserção
-            String sql = "ISERT INTO user (user_name, password, email, celular, foto, data_cadastro) VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO users (user_name, password, email, celular, foto, data_cadastro) VALUES (?, ?, ?, ?, ?, ?)";
 
             try(PreparedStatement comando = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 comando.setString(1, user.getUser_name());
@@ -27,7 +27,7 @@ public class DAOUser {
                 comando.setString(3, user.getEmail());
                 comando.setString(4, user.getCelular());
                 comando.setString(5, user.getFoto());
-                comando.setDate(3, new java.sql.Date(user.getData_cadastro().getTime()));
+                comando.setDate(6, new java.sql.Date(user.getData_cadastro().getTime()));
 
                 //enviar sql para o banco de dados
                 comando.execute();
