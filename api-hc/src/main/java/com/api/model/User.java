@@ -1,6 +1,8 @@
 package com.api.model;
 
-import java.util.Date;
+import java.sql.Date;
+import java.util.Date.*;
+
 
 public class User {
     private int id;
@@ -49,6 +51,7 @@ public class User {
         this.email = email;
         this.celular = celular;
         this.foto = foto;
+        this.data_cadastro = data_cadastro;
     }
 
     public int getId(){

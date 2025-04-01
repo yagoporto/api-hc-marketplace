@@ -41,9 +41,9 @@ public class DAOUser {
             throw new SQLException("Erro ao inserir usuário");
         }
 
-        public static int alterarUser(User user) throws Exception{
+        public static int alterarUserId(User user) throws Exception{
             //query para alteração
-            String sql = "UPDATE user SET user_name = ?, password = ?, email = ?, celular = ?, foto = ?, data_cadastro = ? WHERE id = ?";
+            String sql = "UPDATE users SET user_name = ?, password = ?, email = ?, celular = ?, foto = ?, data_cadastro = ? WHERE id = ?";
             try(PreparedStatement comando = conexao.prepareStatement(sql)){
 
                 //substituir os ? pelos valores
@@ -52,7 +52,30 @@ public class DAOUser {
                 comando.setString(3, user.getEmail());
                 comando.setString(4, user.getCelular());
                 comando.setString(5, user.getFoto());
-                comando.setDate(3, new java.sql.Date(user.getData_cadastro().getTime()));
+                comando.setDate(6, new java.sql.Date(user.getData_cadastro().getTime()));
+                comando.setInt(7, user.getId());
+
+                //enviar sql para o banco de dados
+                int linhasAfetadas = comando.executeUpdate();
+
+                return linhasAfetadas;
+            }
+        }
+
+        public static int alterarUserNome(User user) throws Exception{
+            //query para alteração
+            String sql = "UPDATE users SET user_name = ?, password = ?, email = ?, celular = ?, foto = ?, data_cadastro = ? WHERE user_name = ?";
+            try(PreparedStatement comando = conexao.prepareStatement(sql)){
+
+                //substituir os ? pelos valores
+                comando.setString(1, user.getUser_name());
+                comando.setString(2, user.getPassword());
+                comando.setString(3, user.getEmail());
+                comando.setString(4, user.getCelular());
+                comando.setString(5, user.getFoto());
+                comando.setDate(6, new java.sql.Date(user.getData_cadastro().getTime()));
+                comando.setString(7, user.getUser_name());
+            
 
                 //enviar sql para o banco de dados
                 int linhasAfetadas = comando.executeUpdate();
