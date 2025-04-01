@@ -11,6 +11,6 @@ public class RotasUser {
     public static void processarRotas(Javalin app){
         app.post("/adduser", UserService.cadastrarUser);
         app.put("/updateuserid", UserService.altertarUserId);
-        app.put("/updateusernome", UserService.altertarUserNome);
+        app.get("/consultarid", UserService.consultarUserId);
     }
 }

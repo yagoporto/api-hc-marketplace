@@ -21,10 +21,10 @@ public class UserService {
         String email = ctx.formParam("email");
         String celular = ctx.formParam("celular");
         String foto = ctx.formParam("foto");
-        Date data_cadastro = Date.valueOf(ctx.formParam("data_cadastro"));
+        //Date data_cadastro = Date.valueOf(ctx.formParam("data_cadastro"));
         
         // Cria um objeto User com os dados recebidos
-        User user = new User(user_name, password, email, celular, foto, data_cadastro);
+        User user = new User(user_name, password, email, celular, foto);
 
         try {
             int idGerado = DAOUser.adicionarUser(user);
@@ -46,9 +46,9 @@ public class UserService {
             String email = ctx.formParam("email");
             String celular = ctx.formParam("celular");
             String foto = ctx.formParam("foto");
-            Date data_cadastro = Date.valueOf(ctx.formParam("data_cadastro"));
+            //Date data_cadastro = Date.valueOf(ctx.formParam("data_cadastro"));
 
-            User user = new User(id,user_name, password, email, celular, foto, data_cadastro);
+            User user = new User(id,user_name, password, email, celular, foto);
 
             int linhasAfetadas = DAOUser.alterarUserId(user);
 
@@ -76,9 +76,9 @@ public class UserService {
             String email = ctx.formParam("email");
             String celular = ctx.formParam("celular");
             String foto = ctx.formParam("foto");
-            Date data_cadastro = Date.valueOf(ctx.formParam("data_cadastro"));
+            //Date data_cadastro = Date.valueOf(ctx.formParam("data_cadastro"));
 
-            User user = new User(user_name, password, email, celular, foto, data_cadastro);
+            User user = new User(user_name, password, email, celular, foto);
 
             int linhasAfetadas = DAOUser.alterarUserId(user);
 
@@ -96,6 +96,27 @@ public class UserService {
             e.printStackTrace();
             ctx.status(500);
             ctx.json("{\"message\": \"Erro ao atualizar usuário: " + e.getMessage() + "\"}");
+        }
+    };
+
+    public static Handler consultarUserId = ctx -> {
+        try {
+            // Pega o ID enviado no formulário
+            String idParam = ctx.formParam("id");
+    
+            if (idParam == null || idParam.isEmpty()) {
+                ctx.status(400).json("{\"message\": \"ID não fornecido.\"}");
+                return;
+            }
+    
+            int id = Integer.parseInt(idParam);
+            User user = DAOUser.consultarUserid(id); // Passar o ID diretamente
+    
+            ctx.status(200).json(user);
+        } catch (NumberFormatException e) {
+            ctx.status(400).json("{\"message\": \"ID inválido. Deve ser um número.\"}");
+        } catch (Exception e) {
+            ctx.status(404).json("{\"message\": \"Erro ao buscar usuário: " + e.getMessage() + "\"}");
         }
     };
 }   

@@ -13,7 +13,6 @@ public class User {
     private String foto;
     private Date data_cadastro;
 
-
     public User() {}
     
     public User(
@@ -22,8 +21,7 @@ public class User {
             String password, 
             String email, 
             String celular, 
-            String foto, 
-            Date data_cadastro
+            String foto
         ) {
 
         this.id = id;
@@ -32,18 +30,36 @@ public class User {
         this.email = email;
         this.celular = celular;
         this.foto = foto;
-        this.data_cadastro = data_cadastro;
-        
     }
+
+    public User(
+        int id, 
+        String user_name, 
+        String password, 
+        String email, 
+        String celular, 
+        String foto,
+        Date data_cadastro
+    ) {
+
+    this.id = id;
+    this.user_name = user_name;
+    this.password = password;
+    this.email = email;
+    this.celular = celular;
+    this.foto = foto;
+    this.data_cadastro = data_cadastro;
+}
+
 
     public User(
             String user_name, 
             String password, 
             String email, 
             String celular, 
-            String foto,
-            Date data_cadastro
+            String foto
         ) {
+
 
         this.id = 0;
         this.user_name = user_name;

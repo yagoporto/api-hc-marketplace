@@ -19,7 +19,7 @@ public class DAOUser {
         public static int adicionarUser(User user) throws Exception {
             conexao = Conexao.getConexao();
             //query de inserção
-            String sql = "INSERT INTO users (user_name, password, email, celular, foto, data_cadastro) VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO users (user_name, password, email, celular, foto) VALUES (?, ?, ?, ?, ?)";
 
             try(PreparedStatement comando = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 comando.setString(1, user.getUser_name());
@@ -27,7 +27,7 @@ public class DAOUser {
                 comando.setString(3, user.getEmail());
                 comando.setString(4, user.getCelular());
                 comando.setString(5, user.getFoto());
-                comando.setDate(6, new java.sql.Date(user.getData_cadastro().getTime()));
+                //comando.setDate(6, new java.sql.Date(user.getData_cadastro().getTime()));
 
                 //enviar sql para o banco de dados
                 comando.execute();
@@ -43,7 +43,7 @@ public class DAOUser {
 
         public static int alterarUserId(User user) throws Exception{
             //query para alteração
-            String sql = "UPDATE users SET user_name = ?, password = ?, email = ?, celular = ?, foto = ?, data_cadastro = ? WHERE id = ?";
+            String sql = "UPDATE users SET user_name = ?, password = ?, email = ?, celular = ?, foto = ? WHERE id = ?";
             try(PreparedStatement comando = conexao.prepareStatement(sql)){
 
                 //substituir os ? pelos valores
@@ -52,8 +52,8 @@ public class DAOUser {
                 comando.setString(3, user.getEmail());
                 comando.setString(4, user.getCelular());
                 comando.setString(5, user.getFoto());
-                comando.setDate(6, new java.sql.Date(user.getData_cadastro().getTime()));
-                comando.setInt(7, user.getId());
+                //comando.setDate(6, new java.sql.Date(user.getData_cadastro().getTime()));
+                comando.setInt(6, user.getId());
 
                 //enviar sql para o banco de dados
                 int linhasAfetadas = comando.executeUpdate();
@@ -64,7 +64,7 @@ public class DAOUser {
 
         public static int alterarUserNome(User user) throws Exception{
             //query para alteração
-            String sql = "UPDATE users SET user_name = ?, password = ?, email = ?, celular = ?, foto = ?, data_cadastro = ? WHERE user_name = ?";
+            String sql = "UPDATE users SET user_name = ?, password = ?, email = ?, celular = ?, foto = ? WHERE user_name = ?";
             try(PreparedStatement comando = conexao.prepareStatement(sql)){
 
                 //substituir os ? pelos valores
@@ -73,14 +73,41 @@ public class DAOUser {
                 comando.setString(3, user.getEmail());
                 comando.setString(4, user.getCelular());
                 comando.setString(5, user.getFoto());
-                comando.setDate(6, new java.sql.Date(user.getData_cadastro().getTime()));
-                comando.setString(7, user.getUser_name());
+                //comando.setDate(6, new java.sql.Date(user.getData_cadastro().getTime()));
+                comando.setString(6, user.getUser_name());
             
 
                 //enviar sql para o banco de dados
                 int linhasAfetadas = comando.executeUpdate();
 
                 return linhasAfetadas;
+            }
+        }
+
+        public static User consultarUserid(int id) throws Exception{
+            String sql = "SELECT * FROM users WHERE id = ?";
+            try(PreparedStatement comando = conexao.prepareStatement(sql)){
+
+
+                //substitui o ? pelo valor
+                comando.setInt(1, id);
+                //Executar consulta
+                try(ResultSet resultado = comando.executeQuery()){
+                    if(resultado.next()){
+                        return new User(
+                            resultado.getInt("id"),
+                            resultado.getString("user_name"),
+                            resultado.getString("password"),
+                            resultado.getString("email"),
+                            resultado.getString("celular"),
+                            resultado.getString("foto"),
+                            resultado.getDate("data_cadastro")
+                        );
+
+                    }else{
+                        throw new SQLException("Usuário não encontrado");
+                    }
+                }
             }
         }
 
