@@ -52,7 +52,6 @@ public class DAOUser {
                 comando.setString(3, user.getEmail());
                 comando.setString(4, user.getCelular());
                 comando.setString(5, user.getFoto());
-                //comando.setDate(6, new java.sql.Date(user.getData_cadastro().getTime()));
                 comando.setInt(6, user.getId());
 
                 //enviar sql para o banco de dados
@@ -73,7 +72,6 @@ public class DAOUser {
                 comando.setString(3, user.getEmail());
                 comando.setString(4, user.getCelular());
                 comando.setString(5, user.getFoto());
-                //comando.setDate(6, new java.sql.Date(user.getData_cadastro().getTime()));
                 comando.setString(6, user.getUser_name());
             
 
@@ -111,5 +109,27 @@ public class DAOUser {
             }
         }
 
+        public static List<User> consultarTodosUsuarios() throws Exception{
+            ArrayList<User> lista = new ArrayList<User>();
+            String sql = "SELECT * FROM users";
 
-}
+            try(PreparedStatement comando = conexao.prepareStatement(sql)){
+                try(ResultSet resultado = comando.executeQuery()){
+                    while(resultado.next()){
+                        User listUser = new User(
+                            resultado.getInt("id"),
+                            resultado.getString("user_name"),
+                            resultado.getString("password"),
+                            resultado.getString("email"),
+                            resultado.getString("celular"),
+                            resultado.getString("foto"),
+                            resultado.getDate("data_cadastro")
+                            );
+                            lista.add(listUser);
+                            
+                    }
+                    return lista;
+                }   
+            }
+        }
+}    

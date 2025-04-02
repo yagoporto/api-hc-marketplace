@@ -2,6 +2,7 @@ package com.api.service;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.ArrayList;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,7 +22,6 @@ public class UserService {
         String email = ctx.formParam("email");
         String celular = ctx.formParam("celular");
         String foto = ctx.formParam("foto");
-        //Date data_cadastro = Date.valueOf(ctx.formParam("data_cadastro"));
         
         // Cria um objeto User com os dados recebidos
         User user = new User(user_name, password, email, celular, foto);
@@ -46,7 +46,6 @@ public class UserService {
             String email = ctx.formParam("email");
             String celular = ctx.formParam("celular");
             String foto = ctx.formParam("foto");
-            //Date data_cadastro = Date.valueOf(ctx.formParam("data_cadastro"));
 
             User user = new User(id,user_name, password, email, celular, foto);
 
@@ -76,7 +75,6 @@ public class UserService {
             String email = ctx.formParam("email");
             String celular = ctx.formParam("celular");
             String foto = ctx.formParam("foto");
-            //Date data_cadastro = Date.valueOf(ctx.formParam("data_cadastro"));
 
             User user = new User(user_name, password, email, celular, foto);
 
@@ -117,6 +115,21 @@ public class UserService {
             ctx.status(400).json("{\"message\": \"ID inválido. Deve ser um número.\"}");
         } catch (Exception e) {
             ctx.status(404).json("{\"message\": \"Erro ao buscar usuário: " + e.getMessage() + "\"}");
+        }
+    };
+
+    public static Handler consultarTodosUsuarios = ctx ->  {
+        try{
+            ObjectMapper converteJson = new ObjectMapper();
+
+            //busca todo os usuarios
+            List <User> user = DAOUser.consultarTodosUsuarios();
+            
+            ctx.status(200).json(user);
+        }  catch (NumberFormatException e) {
+            ctx.status(400).json("{\"message\": \"ID inválido. Deve ser um número.\"}");
+        } catch (Exception e) {
+            ctx.status(500).json("{\"message\": \"Erro ao processar requisição.\"}");
         }
     };
 }   

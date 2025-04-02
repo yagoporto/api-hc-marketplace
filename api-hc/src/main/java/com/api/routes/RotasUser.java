@@ -12,5 +12,6 @@ public class RotasUser {
         app.post("/adduser", UserService.cadastrarUser);
         app.put("/updateuserid", UserService.altertarUserId);
         app.get("/consultarid", UserService.consultarUserId);
+        app.get("/consultartodos", UserService.consultarTodosUsuarios);
     }
 }

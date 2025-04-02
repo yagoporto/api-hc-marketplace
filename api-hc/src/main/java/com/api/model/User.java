@@ -61,13 +61,11 @@ public class User {
         ) {
 
 
-        this.id = 0;
         this.user_name = user_name;
         this.password = password;
         this.email = email;
         this.celular = celular;
         this.foto = foto;
-        this.data_cadastro = data_cadastro;
     }
 
     public int getId(){
