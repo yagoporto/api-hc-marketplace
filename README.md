@@ -9,7 +9,7 @@ Este projeto é a API backend de um marketplace especializado em peças do jogo 
 - [Endpoints User](#endpoints-user)
 
 
-## 🚀 Tecnologias Utilizadas
+##  Tecnologias Utilizadas
 
 - **Java 17+**
 - **MySQL**
