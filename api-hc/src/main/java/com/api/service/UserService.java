@@ -120,7 +120,6 @@ public class UserService {
 
     public static Handler consultarTodosUsuarios = ctx ->  {
         try{
-            ObjectMapper converteJson = new ObjectMapper();
 
             //busca todo os usuarios
             List <User> user = DAOUser.consultarTodosUsuarios();
