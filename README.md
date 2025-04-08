@@ -4,10 +4,9 @@ Este projeto é a API backend de um marketplace especializado em peças do jogo 
 
 ## 📑 Índice
 
-- [Tecnologias Utilizadas](#🚀-tecnologias-utilizadas)
-- [Funcionalidades](#📦-funcionalidades)
-- [Endpoints User](#📌-endpoints-user)
-
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [Funcionalidades](#funcionalidades)
+- [Endpoints User](#endpoints-user)
 
 
 ## 🚀 Tecnologias Utilizadas
