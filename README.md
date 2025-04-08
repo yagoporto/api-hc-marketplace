@@ -40,4 +40,4 @@ Este projeto é a API backend de um marketplace especializado em peças do jogo 
 
 ---
 
-Desenvolvido por **Yago Porto**
+Desenvolvido por **Yago Porto**.
