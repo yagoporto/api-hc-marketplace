@@ -9,7 +9,7 @@ Este projeto é a API backend de um marketplace especializado em peças do jogo 
 - [Endpoints User](#endpoints-user)
 
 
-##  Tecnologias Utilizadas 🚀
+##  Tecnologias Utilizadas 
 
 - **Java 17+**
 - **MySQL**
@@ -19,7 +19,7 @@ Este projeto é a API backend de um marketplace especializado em peças do jogo 
 
 
 
-##  Funcionalidades 📦
+##  Funcionalidades 
 
 - Cadastro e autenticação de usuários
 - CRUD de produtos HeroClix
@@ -29,7 +29,7 @@ Este projeto é a API backend de um marketplace especializado em peças do jogo 
 
 
 
-##  Endpoints User 📌
+##  Endpoints User 
 
 | Método | Rota           | Descrição                   |
 |--------|----------------|-----------------------------|
