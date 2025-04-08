@@ -24,3 +24,8 @@ POST	/adduser  Adicionar usuario
 PUT	/updateuserid  Atualizar usuario
 GET	/consultarid	Consultar usuario por ID
 GET	/consultartodos	Consultar todos os usuarios
+
+
+---
+
+Desenvolvido por Yago Porto
