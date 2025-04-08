@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.api.dao.DAOUser;
-import com.api.model.User;
+import com.api.model.UserModel;
 
 import io.javalin.Javalin;
 import io.javalin.http.Handler;
@@ -24,7 +24,7 @@ public class UserService {
         String foto = ctx.formParam("foto");
         
         // Cria um objeto User com os dados recebidos
-        User user = new User(user_name, password, email, celular, foto);
+        UserModel user = new UserModel(user_name, password, email, celular, foto);
 
         try {
             int idGerado = DAOUser.adicionarUser(user);
@@ -47,7 +47,7 @@ public class UserService {
             String celular = ctx.formParam("celular");
             String foto = ctx.formParam("foto");
 
-            User user = new User(id,user_name, password, email, celular, foto);
+            UserModel user = new UserModel(id,user_name, password, email, celular, foto);
 
             int linhasAfetadas = DAOUser.alterarUserId(user);
 
@@ -76,7 +76,7 @@ public class UserService {
             String celular = ctx.formParam("celular");
             String foto = ctx.formParam("foto");
 
-            User user = new User(user_name, password, email, celular, foto);
+            UserModel user = new UserModel(user_name, password, email, celular, foto);
 
             int linhasAfetadas = DAOUser.alterarUserId(user);
 
@@ -108,7 +108,7 @@ public class UserService {
             }
     
             int id = Integer.parseInt(idParam);
-            User user = DAOUser.consultarUserid(id); // Passar o ID diretamente
+            UserModel user = DAOUser.consultarUserid(id); // Passar o ID diretamente
     
             ctx.status(200).json(user);
         } catch (NumberFormatException e) {
@@ -122,7 +122,7 @@ public class UserService {
         try{
 
             //busca todo os usuarios
-            List <User> user = DAOUser.consultarTodosUsuarios();
+            List <UserModel> user = DAOUser.consultarTodosUsuarios();
             
             ctx.status(200).json(user);
         }  catch (NumberFormatException e) {
@@ -131,4 +131,50 @@ public class UserService {
             ctx.status(500).json("{\"message\": \"Erro ao processar requisição.\"}");
         }
     };
-}   
+
+    public static Handler deletarUsuariosId = ctx -> {
+        try {
+            //Extrair o id do usuário a ser deletado
+            int id = Integer.parseInt(ctx.formParam("id"));
+
+            //Chamar o método de deletar
+            int linhasAfetadas = DAOUser.deletarUserId(id);
+
+            if(linhasAfetadas > 0){
+                ctx.status(200); // 200 ok
+                ctx.json("{\"message\": \"Usuário com o ID " + id + " deletado com sucesso.\"}");
+            }else {
+                ctx.status(209); // 404 Not Found
+                ctx.json("{\"message\": \"O Usuario  com id " + id + " não foi encontrado.\"}");
+            }
+        } catch (NumberFormatException e) {
+           ctx.status(400); // 400 Bad Request
+            ctx.json("{\"message\": \"O ID do usuário deve ser um número.\"}");
+        }catch(Exception e) {
+            ctx.status(500); // 500 Internal Server Error
+            ctx.json("{\"message\": \"Erro ao deletar usuário: " + e.getMessage() + "\"}");
+        }
+    };
+
+    public static Handler deletarTodosUsuarios = ctx -> {
+        try {
+
+            //Chamar o método de deletar
+            int linhasAfetadas = DAOUser.deletarTodosUsers();
+
+            if(linhasAfetadas > 0){
+                ctx.status(200); // 200 ok
+                ctx.json("{\"message\": \"Usuários deletados com sucesso.\"}");
+            }else {
+                ctx.status(404); // 404 Not Found
+                ctx.json("{\"message\": \"Nenhum usuario encontrado.\"}");
+            }
+        } catch (NumberFormatException e) {
+           ctx.status(400); // 400 Bad Request
+            ctx.json("{\"message\": \"O ID do usuário deve ser um número.\"}");
+        }catch(Exception e) {
+            ctx.status(500); // 500 Internal Server Error
+            ctx.json("{\"message\": \"Erro ao deletar usuários: " + e.getMessage() + "\"}");
+        }
+    };
+} 

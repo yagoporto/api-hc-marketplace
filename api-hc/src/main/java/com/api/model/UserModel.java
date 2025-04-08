@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.util.Date.*;
 
 
-public class User {
+public class UserModel {
     private int id;
     private String user_name;
     private String password;
@@ -13,9 +13,9 @@ public class User {
     private String foto;
     private Date data_cadastro;
 
-    public User() {}
+    public UserModel() {}
     
-    public User(
+    public UserModel(
             int id, 
             String user_name, 
             String password, 
@@ -32,7 +32,7 @@ public class User {
         this.foto = foto;
     }
 
-    public User(
+    public UserModel(
         int id, 
         String user_name, 
         String password, 
@@ -52,7 +52,7 @@ public class User {
 }
 
 
-    public User(
+    public UserModel(
             String user_name, 
             String password, 
             String email, 

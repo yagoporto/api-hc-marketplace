@@ -1,7 +1,6 @@
 package com.api.routes;
 
-import io.javalin.http.Handler;
-import io.javalin.http.Context;
+
 import io.javalin.Javalin;
 
 import com.api.service.UserService;
@@ -13,5 +12,7 @@ public class RotasUser {
         app.put("/updateuserid", UserService.altertarUserId);
         app.get("/consultarid", UserService.consultarUserId);
         app.get("/consultartodos", UserService.consultarTodosUsuarios);
+        app.delete("/deletaruserid", UserService.deletarUsuariosId);
+        app.delete("/deletartodosusers", UserService.deletarTodosUsuarios);
     }
 }
