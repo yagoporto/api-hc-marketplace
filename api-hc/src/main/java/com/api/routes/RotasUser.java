@@ -13,6 +13,6 @@ public class RotasUser {
         app.get("/consultarid", UserService.consultarUserId);
         app.get("/consultartodos", UserService.consultarTodosUsuarios);
         app.delete("/deletaruserid", UserService.deletarUsuariosId);
-        app.delete("/deletartodosusers", UserService.deletarTodosUsuarios);
+        app.delete("/deletartodos", UserService.deletarTodosUsuarios);
     }
 }

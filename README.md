@@ -14,7 +14,7 @@ Este projeto é a API backend de um marketplace especializado em peças do jogo 
 - **Java 17+**
 - **MySQL**
 - **Maven**
-- **JAVALIN** *(caso esteja usando)*
+- **JAVALIN** 
 - **RESTful API**
 
 
@@ -37,6 +37,9 @@ Este projeto é a API backend de um marketplace especializado em peças do jogo 
 | PUT    | /updateuserid  | Atualizar usuário           |
 | GET    | /consultarid   | Consultar usuário por ID    |
 | GET    | /consultartodos| Consultar todos os usuários |
+| DELETE | /deletaruserid | Deletar usuários por id     |
+| DELETE | /deletartodos  | Deletar usuários por id     |
+
 
 ---
 
