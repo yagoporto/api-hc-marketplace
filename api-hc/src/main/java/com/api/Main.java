@@ -7,6 +7,7 @@ import io.javalin.http.HttpStatus;
 
 import java.sql.Connection;
 
+import com.api.routes.RotasPecas;
 import com.api.routes.RotasUser;
 import com.api.config.Conexao;
 import com.api.dao.DAOUser;
@@ -39,6 +40,7 @@ public class Main {
             });
 
             RotasUser.processarRotas(app);
+            RotasPecas.processarRotas(app);
             
         } catch (Exception e) {
             e.printStackTrace();

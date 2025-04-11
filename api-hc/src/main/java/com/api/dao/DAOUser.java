@@ -28,7 +28,6 @@ public class DAOUser {
                 comando.setString(3, user.getEmail());
                 comando.setString(4, user.getCelular());
                 comando.setString(5, user.getFoto());
-                //comando.setDate(6, new java.sql.Date(user.getData_cadastro().getTime()));
 
                 //enviar sql para o banco de dados
                 comando.execute();

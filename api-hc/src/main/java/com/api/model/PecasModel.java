@@ -6,7 +6,7 @@ public class PecasModel {
     private String nome;
     private String descricao;
     private String imagem;
-    private String qtd_peca;
+    private String qtd_pecas;
 
     public PecasModel() {
     }
@@ -17,14 +17,14 @@ public class PecasModel {
             String nome,
             String descricao,
             String imagem,
-            String qtd_peca
+            String qtd_pecas
             ){
         this.id = id;
         this.id_colection = id_colection;
         this.nome = nome;
         this.descricao = descricao;
         this.imagem = imagem;
-        this.qtd_peca = qtd_peca;
+        this.qtd_pecas = qtd_pecas;
     }
 
     public PecasModel(
@@ -32,13 +32,13 @@ public class PecasModel {
         String nome,
         String descricao,
         String imagem,
-        String qtd_peca
+        String qtd_pecas
         ){
     this.id_colection = id_colection;
     this.nome = nome;
     this.descricao = descricao;
     this.imagem = imagem;
-    this.qtd_peca = qtd_peca;
+    this.qtd_pecas = qtd_pecas;
 }
 
 public int getId() {
@@ -81,11 +81,11 @@ public int getId() {
         this.imagem = imagem;
     }
 
-    public String getQtd_peca() {
-        return qtd_peca;
+    public String getQtd_pecas() {
+        return qtd_pecas;
     }
 
-    public void setQtd_peca(String qtd_peca) {
-        this.qtd_peca = qtd_peca;
+    public void setQtd_pecas(String qtd_pecas) {
+        this.qtd_pecas = qtd_pecas;
     }
 }
