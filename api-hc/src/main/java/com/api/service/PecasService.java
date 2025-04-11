@@ -35,4 +35,25 @@ public class PecasService {
             ctx.json("{\"message\": \"Erro ao criar peca: " + e.getMessage() + "\"}");
         }
     };
+
+    public static Handler consultarPecasId = (ctx) -> {
+        try {
+            //Pegar id  enviado no formulario
+            String idParam = ctx.formParam("id");
+
+            if(idParam == null || idParam.isEmpty()){
+                ctx.status(400).json("{\"message\": \"ID não fornecido.\"}");
+                return;
+            }
+
+            int id = Integer.parseInt(idParam);
+            PecasModel user = DAOPecas.consultarPecasId(id); // Passar o ID diretamente
+
+            ctx.status(200).json(user);
+        } catch (NumberFormatException e) {
+            ctx.status(400).json("{\"message\": \"ID inválido. Deve ser um número.\"}");
+        } catch (Exception e) {
+            ctx.status(404).json("{\"message\": \"Erro ao buscar peca: " + e.getMessage() + "\"}");
+        }
+    };
 }

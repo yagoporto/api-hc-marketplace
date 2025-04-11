@@ -39,4 +39,32 @@ public class DAOPecas {
             throw new SQLException("Erro ao inserir usuário");
         }
     }
+
+    public static PecasModel consultarPecasId(int id) throws Exception {
+        conexao = Conexao.getConexao();
+
+        String sql = "SELECT * FROM pecas WHERE id = ?";
+
+        try(PreparedStatement comando = conexao.prepareStatement(sql)) {
+            //substituir os ? pelos valores
+            comando.setInt(1, id);
+
+            //enviar sql para o banco de dados
+            try(ResultSet resultado = comando.executeQuery()){
+                if(resultado.next()){
+                    return new PecasModel(
+                        resultado.getInt("id"),
+                        resultado.getString("id_colection"),
+                        resultado.getString("nome"),
+                        resultado.getString("descricao"),
+                        resultado.getString("imagem"),
+                        resultado.getString("qtd_pecas")
+                    );
+                }else{
+                    throw new SQLException("Peca não encontrada");
+                }
+            }
+        }
+
+    }
 }
